@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="js/jquery-2.1.0.js"></script> 
 
-<script type="text/javascript" src="js/jspdf.min.js"></script>
+<script type="text/javascript" src="js/jspdf.source.js"></script>
 <script type="text/javascript" src="js/jspdf.plugin.new_addimage.js"></script>
 
 jspdf.plugin.new_addimage.js
@@ -110,9 +110,9 @@ doc.text("MEMBERSHIP CARD", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)
 }
 
 
-//var string = doc.output('datauristring');
-
-//$('.preview-pane').attr('src', string);
+var string = doc.output('datauristring');
+//doc.output('datauri');
+$('.preview-pane').attr('src', string);
 /*var string = doc.output('datauristring');*/
 doc.save('Test.pdf');
 

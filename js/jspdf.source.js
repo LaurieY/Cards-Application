@@ -913,7 +913,7 @@ PubSub implementation
                 outToPages = false; // switches out() to content
                 content = [];
                 offsets = [];
-				objectNumber = 2; //reset the objectNumber so we can run buildDocument again if we would like to.
+objectNumber = 2; //reset the objectNumber so we can run buildDocument again if we would like to
                 // putHeader()
                 out('%PDF-' + pdfVersion);
 
