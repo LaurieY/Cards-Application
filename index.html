@@ -96,7 +96,30 @@ textSize=36;
 doc.setFontSize(10);
 doc.text("MEMBERSHIP CARD", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)+18.5);
 }
-
+doc.addPage();
+nextCard.x=firstCard.x,nextCard.y =firstCard.y-vertMove;
+for (i=0;i<3;i++) {
+if (i%2 !=1)
+{// left side so move down
+nextCard.x = firstCard.x;
+nextCard.y += vertMove;
+}
+else
+{// right side so move across
+nextCard.x += horizonMove;
+}
+doc.rect(nextCard.x,nextCard.y,cardSize.wd,cardSize.ht);
+//doc.text("Card Number "+(i), nextCard.x,(nextCard.y)+5);
+doc.addImage(imgData, 'JPEG', nextCard.x+(cardSize.wd/2)-8, nextCard.y+0.5, 16, 10);
+doc.setFontSize(12);
+var textSize = doc.getStringUnitWidth("(Marbella & Inland)") * 12;
+textSize=40;
+var textLoc= nextCard.x+(cardSize.wd/2)-(textSize/2);
+doc.text("(Marbella & Inland)", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)+13);
+textSize=36;
+doc.setFontSize(10);
+doc.text("MEMBERSHIP CARD", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)+18.5);
+}
 
 var string = doc.output('datauristring');
 
