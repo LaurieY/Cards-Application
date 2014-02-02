@@ -38,7 +38,7 @@ $('.preview-pane').attr('src','frame.html');
 //$("p").css("color", "blue")
   $("p").fadeIn();
  
-  var datelen = $('.FY').length;
+ /* var datelen = $('.FY').length;
   var dateentries = $('.FY');
   var entriest = $('tr span').text();
   var entriestlen = entriest.length;
@@ -47,7 +47,7 @@ $('.preview-pane').attr('src','frame.html');
   for (var i=0;i<dateentries.length;i++)
 { dateentries[i].innerHTML = "(October 2014 – September 2015)"; 
 
-}
+} */
 var doc = new jsPDF("portrait", "mm","a4",true);
 
 
@@ -71,6 +71,10 @@ doc.lines([[0,-8],[0,15]], 104.55,10, [1,1]);
 doc.lines([[0,-8],[0,15]], 185.5,10, [1,1]); 
 // All units are in the set measurement for the document
 // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+var stringSize=0;
+doc.setFontSize(10);
+doc.cellInitialize();
+doc.cell(10,10, 60, 10, ["MEMBERSHIP CARD"], 1, 'right');
 
  horizonMove=81,vertMove= 42;//
 var cardSize = {wd:80,ht:41};
@@ -102,7 +106,9 @@ textSize=40;
 var textLoc= nextCard.x+(cardSize.wd/2)-(textSize/2);
 doc.text("(Marbella & Inland)", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)+13);
 textSize=36;
+
 doc.setFontSize(10);
+stringSize= doc.getTextDimensions("MEMBERSHIP CARD");
 doc.text("MEMBERSHIP CARD", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)+18.5);
 }
 
@@ -113,7 +119,7 @@ doc.text("MEMBERSHIP CARD", nextCard.x+(cardSize.wd/2)-(textSize/2),(nextCard.y)
 var string = doc.output('datauristring');
 //doc.output('datauri');
 $('.preview-pane').attr('src', string);
-/*var string = doc.output('datauristring');*/
+
 doc.save('Test.pdf');
 
 }); 
@@ -125,7 +131,7 @@ doc.save('Test.pdf');
 <button type="button">Click Me!</button>
 
 </div>
- <div id="cardbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;'>
+ <!---<div id="cardbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;'>
  <table style='float:left; '>
 	<tbody>
 		<tr>  <td > <img class="displayed"      src="image002.jpg"> 
@@ -321,7 +327,7 @@ doc.save('Test.pdf');
 </table>
 
 </div>
-
+--->
 <iframe class="page-icon preview-pane" frameborder="0" ></iframe>
 
 

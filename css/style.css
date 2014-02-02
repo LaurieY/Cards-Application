@@ -77,11 +77,14 @@ table-layout: fixed;
 }
 .preview-pane {
 	border: 3px solid #ccc;
-		width: 30%; 
-	height: 400px; 
-	float: right; 
+		width: 80%; 
+	height:100%; 
+	/*float: left; */
 	clear: left; 
-	position: relative;
+	/*position: relative;*/
+	position:fixed;
+	left:20%;
+	right:0%;
 	font-family: "source-code-pro";
 	font-size: 14px;
 }
@@ -137,10 +140,10 @@ table-layout: fixed;
 .page-break	{ display: none; }
 
 
-@media screen and (max-width:21cm) {
+/*@media screen and (max-width:21cm) {*/
 /* resize your window until the event is triggered */
-html { width:21cm; }
-/* roughly a 12px font size for demo */
+/*html { width:21cm; }
+
 body { font: 9pt/1.5 Arial, sans-serif; }
 div { border:2px solid green; color:green; width:5in; }
 b { display:none; }
@@ -155,5 +158,5 @@ table-layout: fixed;
 	vertical-align: top;
 background:white;}
 
-}
+}*/
 
