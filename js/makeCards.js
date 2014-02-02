@@ -66,7 +66,7 @@ var memberList=[{surname:"Edwards",forename:"Allan",memNum:1},
 var FY="  (October 2013 - September 2014)";
 var membName  = "LAURIE YATES";
 
-var doc = new jsPDF("portrait", "mm","a4",true);
+var doc = new jsPDF("portrait", "mm","a4",false);
 var cardPage=0, carddNum=0;
 // We'll make our own renderer to skip this editor
 /*var specialElementHandlers = {
@@ -112,8 +112,9 @@ else
 {// right side so move across
 nextCard.x += horizonMove;
 }
-doc.setLineWidth(0.3);
-doc.rect(nextCard.x,nextCard.y,cardSize.wd,cardSize.ht);
+doc.setLineWidth(0.5);
+myRect(doc,nextCard.x,nextCard.y,cardSize.wd,cardSize.ht);doc.rect(nextCard.x,nextCard.y,cardSize.wd,cardSize.ht);
+
 
 //doc.addImage(imgData, 'JPEG', nextCard.x+(cardSize.wd/2)-8, nextCard.y+0.5, 16, 10);
 doc.addImage('u3aLogo', 'JPEG', nextCard.x+(cardSize.wd/2)-25, nextCard.y+0.5,50, 23);
@@ -191,5 +192,11 @@ var txtLen=doc.getTextDimensions(txt);
 
 txtLen= ctx.measureText(txt).width;
 doc.text(txt, xLeft+0.5+(wd/2)-(txtLen*25.4/144) ,y);
+
+}
+
+/****   myRect, allows for thicker lines, uses currently set line width */
+function myRect(dc,x1,y1,wd,ht) {
+dc.lines([[wd,0 ],[0,ht ], [-wd,0 ], [0,-ht]],x1,y1,  [1,1]);
 
 }
