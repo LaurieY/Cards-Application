@@ -69,7 +69,7 @@ var MEMB = "MEMBERSHIP CARD";
 var membName  = "LAURIE YATES";
 
 var doc = new jsPDF("portrait", "mm","a4",false);
-var cardPage=0, carddNum=0;
+var cardPage=0, carddNum=0,txtLen=0;
 // We'll make our own renderer to skip this editor
 /*var specialElementHandlers = {
         '#editor': function(element, renderer){
@@ -123,11 +123,19 @@ myRect(doc,nextCard.x,nextCard.y,cardSize.wd,cardSize.ht);doc.rect(nextCard.x,ne
 doc.addImage('u3aLogo', 'JPEG', nextCard.x+(cardSize.wd/2)-25, nextCard.y+0.5,50,20); //positioned at mid pt less half the width of the image
 
 doc.setTextColor(0,0,0);
-centreText(doc, MEMB, nextCard.x,cardSize.wd,(nextCard.y)+23, 'times', 8,'bold') ;
-centreText(doc, FY, nextCard.x,cardSize.wd,(nextCard.y)+28, 'times', 8,'normal') ;
+
+//centreText(doc, MEMB, nextCard.x,cardSize.wd,(nextCard.y)+23, 'times', 8,'bold') ;
+txtLen=calcCentreText(doc, MEMB, cardSize.wd, 'times', 8,'bold');
+doc.text(MEMB,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+23) ;
+
+txtLen=calcCentreText(doc, FY, cardSize.wd, 'times', 8,'normal');
+//centreText(doc, FY, nextCard.x,cardSize.wd,(nextCard.y)+28, 'times', 8,'normal') ;
+doc.text(FY,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+28) ;	
 var memInd=((cardPage-1)*12)+cardNum;
-membName= memberList[memInd].forename+" "+memberList[memInd].surname
-centreText(doc, membName, (nextCard.x)-1,cardSize.wd*.85,(nextCard.y)+36, 'times', 13,'bold') ;
+membName= memberList[memInd].forename+" "+memberList[memInd].surname;
+txtLen=calcCentreText(doc, membName, cardSize.wd, 'times', 13,'bold');
+//centreText(doc, membName, (nextCard.x)-1,cardSize.wd*.85,(nextCard.y)+36, 'times', 13,'bold') ;
+doc.text(membName,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+36) ;	
 doc.setTextColor(153, 51, 102);
 doc.setFontSize(13);
 doc.setFont("times","bold");
@@ -182,21 +190,24 @@ doc.lines([[0,-8],[0,15]], 185.5,10, [1,1]); */
 
 /*************** centreText **********/
 /***** puts the text  onto the page, params the doc, the text, the LHS location x,the  card width, location y  , font, fontSize, fontStyle  ****   */
-function centreText(doc, txt, xLeft, wd,y,font, fontSize,fontStyle) {
+function calcCentreText(doc, txt,  wd,font, fontSize,fontStyle) {
 doc.setFontSize(fontSize);
 doc.setFont(font,fontStyle);
+var txtLen;
 //doc.setFontStyle('italic');
-var txtLen=doc.getTextDimensions(txt);
+//var txtLen=doc.getTextDimensions(txt);  // in pts  **** Does NOT work in FF, <font> not supported in HTML5 anyway
 
-        var canvas = document.createElement('canvas');
+       var canvas = document.createElement('canvas');
 		canvas.width = 	wd;
 	    canvas.height = 100;
 		var ctx = canvas.getContext('2d');
-		ctx.font=fontSize+"px "+font	;
+		ctx.font=fontSize+"pt "+font	;
 
-txtLen= ctx.measureText(txt).width;
-doc.text(txt, xLeft+0.5+(wd/2)-(txtLen*25.4/144) ,y);
-
+txtLen= ctx.measureText(txt).width; /*  */ // in Pixels
+//doc.text(txt, xLeft+0.5+(wd/2)-(txtLen*25.4/144) ,y);
+//1 pixel = 0.264583 mm and 1 mm = 72/25.4 point
+//var px2pt = 0.264583 * 72 / 25.4
+return (txtLen*0.264583333);  // length in mm
 }
 
 /****   myRect, allows for thicker lines, uses currently set line width */
