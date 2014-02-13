@@ -5,7 +5,7 @@ function createCards(option) {
 var memberList=[{surname:"Benavides Pascual",forename:"Maria Teresa",memNum:564,printed:''},
 {surname:"Edwards",forename:"Allan",memNum:1},
 {surname:"Thomas",forename:"Brian",memNum:2},
-{surname:"YATES",forename:"LAURIE",memNum:3},
+{surname:"",forename:"",memNum:3},
 {surname:"Rowat",forename:"Margaret",memNum:4},
 {surname:"Kohler",forename:"Ingeborg",memNum:5},
 {surname:"Lawlor",forename:"Mauna",memNum:6},
@@ -64,7 +64,7 @@ var memberList=[{surname:"Benavides Pascual",forename:"Maria Teresa",memNum:564,
 {surname:"Torres",forename:"Carmen",memNum:59},
 {surname:"Cardenal",forename:"Julio",memNum:60}];
 //alert(memberList[0].surname);
-var FY="  (October 2013 - September 2014)";
+var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";
 var membName  = "LAURIE YATES";
 
@@ -125,17 +125,32 @@ doc.addImage('u3aLogo', 'JPEG', nextCard.x+(cardSize.wd/2)-25, nextCard.y+0.5,50
 doc.setTextColor(0,0,0);
 
 //centreText(doc, MEMB, nextCard.x,cardSize.wd,(nextCard.y)+23, 'times', 8,'bold') ;
-txtLen=calcCentreText(doc, MEMB, cardSize.wd, 'times', 8,'bold');
-doc.text(MEMB,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+23) ;
+//txtLen=calcCentreText(doc, MEMB, cardSize.wd, 'times', 8,'bold');
+//doc.text(MEMB,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+23) ;
+centreText(doc,MEMB,nextCard,cardSize,23,'times', 8,'bold') ;
 
-txtLen=calcCentreText(doc, FY, cardSize.wd, 'times', 8,'normal');
+//txtLen=calcCentreText(doc, FY, cardSize.wd, 'times', 8,'normal');
 //centreText(doc, FY, nextCard.x,cardSize.wd,(nextCard.y)+28, 'times', 8,'normal') ;
-doc.text(FY,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+28) ;	
+//doc.text(FY,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+28) ;	
+centreText(doc,FY,nextCard,cardSize,28,'times', 8,'normal') ;
+
+
 var memInd=((cardPage-1)*12)+cardNum;
 membName= memberList[memInd].forename+" "+memberList[memInd].surname;
-txtLen=calcCentreText(doc, membName, cardSize.wd, 'times', 13,'bold');
-//centreText(doc, membName, (nextCard.x)-1,cardSize.wd*.85,(nextCard.y)+36, 'times', 13,'bold') ;
-doc.text(membName,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+36) ;	
+var membFontSize=[13,12,11,10];
+var z=0;
+for (;membFontSize[z];z++)
+{txtLen=calcCentreText(doc, membName, cardSize.wd, 'times', membFontSize[z],'bold');
+if(txtLen < cardSize.wd*0.65) { // its a long name if the mid point of the card +1/2 the txtLen is > 60% of the card, it'll run into the NUMBER so reduce font size until it fits
+	doc.setFontSize(membFontSize[z]);
+doc.setFont('times','bold');
+doc.text(membName,(nextCard.x+-0.5+(cardSize.wd*0.5)-(txtLen*0.5)),(nextCard.y)+36) ;		
+break;}  //jumps out when the font is small enough
+}
+
+
+
+
 doc.setTextColor(153, 51, 102);
 doc.setFontSize(13);
 doc.setFont("times","bold");
@@ -190,6 +205,17 @@ doc.lines([[0,-8],[0,15]], 185.5,10, [1,1]); */
 
 /*************** centreText **********/
 /***** puts the text  onto the page, params the doc, the text, the LHS location x,the  card width, location y  , font, fontSize, fontStyle  ****   */
+//centreText(doc, FY, nextCard.x,cardSize.wd,(nextCard.y)+28, 'times', 8,'normal') ;
+function centreText(doc,txt,card,cardSize,yDispl,font,fontSize,fontStyle) {
+var txtLen = calcCentreText(doc, txt,  card.wd,font, fontSize,fontStyle);
+doc.setFontSize(fontSize);
+doc.setFont(font,fontStyle);
+doc.text(txt,(card.x+(cardSize.wd*0.5)-(txtLen*0.5)),(card.y+yDispl)) ;
+
+}
+/*************** calcCentreText **********/
+/********* calculates the length of the string ***/
+
 function calcCentreText(doc, txt,  wd,font, fontSize,fontStyle) {
 doc.setFontSize(fontSize);
 doc.setFont(font,fontStyle);
@@ -197,17 +223,20 @@ var txtLen;
 //doc.setFontStyle('italic');
 //var txtLen=doc.getTextDimensions(txt);  // in pts  **** Does NOT work in FF, <font> not supported in HTML5 anyway
 
-       var canvas = document.createElement('canvas');
+   /*    var canvas = document.createElement('canvas');
 		canvas.width = 	wd;
 	    canvas.height = 100;
 		var ctx = canvas.getContext('2d');
-		ctx.font=fontSize+"pt "+font	;
+		ctx.font=fontSize+"pt "+font	; */
 
-txtLen= ctx.measureText(txt).width; /*  */ // in Pixels
+//txtLen= ctx.measureText(txt).width; /*  */ // in Pixels
 //doc.text(txt, xLeft+0.5+(wd/2)-(txtLen*25.4/144) ,y);
 //1 pixel = 0.264583 mm and 1 mm = 72/25.4 point
 //var px2pt = 0.264583 * 72 / 25.4
-return (txtLen*0.264583333);  // length in mm
+
+txtLen = Math.ceil((doc.getStringUnitWidth(txt)*doc.internal.getFontSize())/(72/25.6));
+//return (txtLen*0.264583333);  // length in mm
+return (txtLen);  // length in mm
 }
 
 /****   myRect, allows for thicker lines, uses currently set line width */
