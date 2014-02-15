@@ -77,7 +77,20 @@ table-layout: fixed;
 }
 .preview-pane {
 	border: 3px solid #ccc;
-		width: 80%; 
+		width: 50%; 
+	height:100%; 
+	/*float: left; */
+	clear: left; 
+	/*position: relative;*/
+	position:fixed;
+	left:50%;
+	right:0%;
+	font-family: "source-code-pro";
+	font-size: 14px;
+}
+.grid-pane {
+	border: 3px solid #ccc;
+		width: 30%; 
 	height:100%; 
 	/*float: left; */
 	clear: left; 

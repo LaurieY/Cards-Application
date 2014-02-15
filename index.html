@@ -39,7 +39,7 @@
 $(document).ready(function() { 
 
 $('.preview-pane').attr('src','frame.html');
-
+//$('.grid-pane').attr('src','grid.html');
  $("button[value='makeCards']").click(function() { 
   createCards("show"); 
  }); 
@@ -245,9 +245,13 @@ function sheet_to_row_object_array_add_headings(sheet, headings){ //column headi
 <!--
 <textarea id="b64data">... or paste a base64-encoding here</textarea>
 <input type="button" id="dotext" value="Click here to process the base64 text" onclick="b64it();"/>
--->
-<pre id="out"></pre>
+-->
 <br />
+</div>
+<div class="page-icon grid-pane" frameborder="0" >
+grid div<br>
+<pre id="out"></pre>
+
 </div>
 <iframe class="page-icon preview-pane" frameborder="0" ></iframe>
 
