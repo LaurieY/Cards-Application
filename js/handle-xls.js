@@ -73,10 +73,12 @@ function process_wb(wb) {
 		var activeSheet;
 			var jsonOutput;
 			activeSheet = getLargestSheetFromObject(jsonOut);	//get shhet name for the largest sheet, assumed to be the important one	
-			var newOuput1=rejigColumns(jsonOut[activeSheet]);  //work out which columns are which & move to ColA=number then firstname surname
-			output = JSON.stringify(newOuput1, 2, 2);
+			var newOutput1=rejigColumns(jsonOut[activeSheet]);  //work out which columns are which & move to ColA=number then firstname surname
+			var newOutput2 = sortOutput1(newOutput1);
+			var newOutput3= insertBlankMembers(newOutput2);
+			output = JSON.stringify(newOutput1, 2, 2);
 			//output = JSON.stringify(jsonOut[activeSheet], 2, 2);
-			break;
+			break;	
 		case "form":
 			output = to_formulae(wb);
 			break; 
@@ -142,7 +144,7 @@ function sheet_to_row_object_array_add_headings(sheet, headings){ //column headi
 		}
 
 	//	for (var R = range.s.r + 1; R <= range.e.r; ++R) {
-			for (var R = range.s.r ; R <= range.e.r; ++R) { //changed to start at 1st row assuming no headers
+			for (var R = range.s.r ; R < range.e.r; ++R) { //changed to start at 1st row assuming no headers
 			emptyRow = true;
 			//Row number is recorded in the prototype
 			//so that it doesn't appear when stringified.
@@ -246,4 +248,34 @@ if ((typeof val ==="string"   ) && (val.toLowerCase() == aString)) {
 if (foundString) { return true;}
 else 
 {return false;}
+}
+function sortOutput1(newOut) {
+//*****************before sorting remove any blank rows
+for(var i = 0; i < newOut.length; i++) {
+	if (newOut[i]["MembNum"]===undefined) {
+		newOut.splice(i,1); 
+		}
+	}
+newOut.sort(function (a, b) {
+   if (a.MembNum > b.MembNum)
+      return 1;
+    if (a.MembNum < b.MembNum)
+      return -1;
+   
+});
+return newOut;
+}
+function insertBlankMembers(newOut){
+var prevNum=0;
+var gapSize=0;
+for(var i = 0; i < newOut.length; i++) {
+gapSize=(newOut[i].MembNum -prevNum );
+if (gapSize>1) { //there is a gap, insert a number of blank rows
+		for (var j=0; j < gapSize-1;j++) {
+			newOut.splice(i+j,0,{"MembNum":prevNum+1+j,"FirstName":"","SurName":""});
+			}
+		}
+		prevNum= newOut[i].MembNum;
+	}
+
 }
