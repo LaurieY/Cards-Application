@@ -4846,64 +4846,7 @@ function sheet_to_row_object_array(sheet){
 	}
 	return outSheet;
 }
- function sheet_to_row_object_array_add_headings(sheet, headings){ //column headings are an array of strings to be used as the headings i.e. Row 0
-	var val, rowObject, range, columnHeaders, emptyRow, C;
-	var outSheet = [];
-	if (sheet["!ref"]) {
-		range = decode_range(sheet["!ref"]);
-
-		columnHeaders = {};
-		if (headings== "undefined") {
-		for (C = range.s.c; C <= range.e.c; ++C) {
-			val = sheet[encode_cell({
-				c: C,
-				r: range.s.r
-			})];
-			if(val){
-				switch(val.t) {
-					case 's': case 'str': columnHeaders[C] = JSON.parse(val.v); break;
-					case 'n': columnHeaders[C] = val.v; break;
-				}
-			}
-		} } else {
-		for (C = 0; C <headings.length; ++C) {
-		columnHeaders[C] = headings[C];
-		
-		  }
-		}
-
-		for (var R = range.s.r + 1; R <= range.e.r; ++R) {
-			emptyRow = true;
-			//Row number is recorded in the prototype
-			//so that it doesn't appear when stringified.
-			rowObject = Object.create({ __rowNum__ : R });
-			for (C = range.s.c; C <= range.e.c; ++C) {
-				val = sheet[encode_cell({
-					c: C,
-					r: R
-				})];
-				var v = (val || {}).v;
-				if(val !== undefined) switch(val.t){
-					case 's': case 'str':
-						if(v !== undefined) v = JSON.parse(v);
-					/* falls through */
-					case 'b': case 'n':
-						if(v !== undefined) {
-							rowObject[columnHeaders[C]] = v;
-							emptyRow = false;
-						}
-						break;
-					case 'e': break; /* throw */
-					default: throw 'unrecognized type ' + val.t;
-				}
-			}
-			if(!emptyRow) {
-				outSheet.push(rowObject);
-			}
-		}
-	}
-	return outSheet;
-}
+ 
 function sheet_to_csv(sheet) {
 	var out = "";
 	if(sheet["!ref"]) {
@@ -4950,7 +4893,7 @@ var utils = {
 	make_csv: sheet_to_csv,
 	get_formulae: get_formulae,
 	sheet_to_row_object_array: sheet_to_row_object_array,
-	sheet_to_row_object_array_add_headings: sheet_to_row_object_array_add_headings
+	//sheet_to_row_object_array_add_headings: sheet_to_row_object_array_add_headings
 };
 
 function xlsread(f, options) {
