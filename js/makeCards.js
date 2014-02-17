@@ -2,72 +2,72 @@
 /********************************createCards  *****/
 function createCards(option) {
 
-var memberList=[{surname:"Benavides Pascual",forename:"Maria Teresa",memNum:564,printed:''},
-{surname:"Edwards",forename:"Allan",memNum:1},
-{surname:"Thomas",forename:"Brian",memNum:2},
-{surname:"",forename:"",memNum:3},
-{surname:"Rowat",forename:"Margaret",memNum:4},
-{surname:"Kohler",forename:"Ingeborg",memNum:5},
-{surname:"Lawlor",forename:"Mauna",memNum:6},
-{surname:"Thomas",forename:"Carol",memNum:7},
-{surname:"Watson",forename:"Brian",memNum:8},
-{surname:"Gilhead",forename:"Jean ",memNum:9},
-{surname:"Howard",forename:"Paul",memNum:10},
-{surname:"Abbott",forename:"Harry",memNum:11},
-{surname:"Joss",forename:"Jean",memNum:12},
-{surname:"Siebrecht",forename:"Irmela",memNum:13},
-{surname:"Heinen",forename:"Lola",memNum:14},
-{surname:"Bayer",forename:"Jutta",memNum:15},
-{surname:"Houben",forename:"Valerie",memNum:16},
-{surname:"Woodhead",forename:"Jane",memNum:17},
-{surname:"Van Tuijl",forename:"Pieter",memNum:18},
-{surname:"Van Tuijl",forename:"Jo-Anne",memNum:19},
-{surname:"Ellis",forename:"Jenny",memNum:20},
-{surname:"Ellis",forename:"Rod",memNum:21},
-{surname:"Huggett",forename:"Joan",memNum:22},
-{surname:"Hambleton",forename:"Roger",memNum:23},
-{surname:"Hambleton",forename:"Barbara",memNum:24},
-{surname:"Beckett",forename:"Chris",memNum:25},
-{surname:"Beckett",forename:"Dee",memNum:26},
-{surname:"Hagley",forename:"Catharina",memNum:27},
-{surname:"Mudie",forename:"Corrine",memNum:28},
-{surname:"Finerty",forename:"John",memNum:29},
-{surname:"Knott",forename:"Cara",memNum:30},
-{surname:"Knott",forename:"Clement",memNum:31},
-{surname:"McNamara",forename:"Eileen",memNum:32},
-{surname:"Sanchez",forename:"Elena",memNum:33},
-{surname:"Gross",forename:"Elizabeth",memNum:34},
-{surname:"Gross",forename:"Jurgen",memNum:35},
-{surname:"Gearon",forename:"Colin",memNum:36},
-{surname:"Cavanagh",forename:"Shirley",memNum:37},
-{surname:"Ableson",forename:"Jane",memNum:38},
-{surname:"Houlihan",forename:"Marilyn",memNum:39},
-{surname:"Sjokvist",forename:"Yvonne",memNum:40},
-{surname:"Lacey",forename:"Lynn",memNum:41},
-{surname:"Gearon",forename:"Susan",memNum:42},
-{surname:"Coombes",forename:"Maureen",memNum:43},
-{surname:"Whatmore",forename:"Carmel",memNum:44},
-{surname:"Purcell",forename:"Vincent",memNum:45},
-{surname:"Taylor",forename:"Laurie",memNum:46},
-{surname:"Taylor",forename:"Josephine",memNum:47},
-{surname:"Eklund",forename:"Anette",memNum:48},
-{surname:"Graty",forename:"Tom",memNum:49},
-{surname:"Da Costa",forename:"Michael",memNum:50},
-{surname:"Scott",forename:"Bill",memNum:51},
-{surname:"Scott",forename:"Anne",memNum:52},
-{surname:"Moeller",forename:"Angret",memNum:53},
-{surname:"O'Farrell",forename:"Betty",memNum:54},
-{surname:"O'Farrell",forename:"Brian",memNum:55},
-{surname:"Aston",forename:"Ginny",memNum:56},
-{surname:"Kelly",forename:"James",memNum:57},
-{surname:"Walters",forename:"Meta",memNum:58},
-{surname:"Torres",forename:"Carmen",memNum:59},
-{surname:"Cardenal",forename:"Julio",memNum:60}];
-//alert(memberList[0].surname);
+var memberList=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
+{SurName:"Edwards",FirstName:"Allan",MembNum:1},
+{SurName:"Thomas",FirstName:"Brian",MembNum:2},
+{SurName:"",FirstName:"",MembNum:3},
+{SurName:"Rowat",FirstName:"Margaret",MembNum:4},
+{SurName:"Kohler",FirstName:"Ingeborg",MembNum:5},
+{SurName:"Lawlor",FirstName:"Mauna",MembNum:6},
+{SurName:"Thomas",FirstName:"Carol",MembNum:7},
+{SurName:"Watson",FirstName:"Brian",MembNum:8},
+{SurName:"Gilhead",FirstName:"Jean ",MembNum:9},
+{SurName:"Howard",FirstName:"Paul",MembNum:10},
+{SurName:"Abbott",FirstName:"Harry",MembNum:11},
+{SurName:"Joss",FirstName:"Jean",MembNum:12},
+{SurName:"Siebrecht",FirstName:"Irmela",MembNum:13},
+{SurName:"Heinen",FirstName:"Lola",MembNum:14},
+{SurName:"Bayer",FirstName:"Jutta",MembNum:15},
+{SurName:"Houben",FirstName:"Valerie",MembNum:16},
+{SurName:"Woodhead",FirstName:"Jane",MembNum:17},
+{SurName:"Van Tuijl",FirstName:"Pieter",MembNum:18},
+{SurName:"Van Tuijl",FirstName:"Jo-Anne",MembNum:19},
+{SurName:"Ellis",FirstName:"Jenny",MembNum:20},
+{SurName:"Ellis",FirstName:"Rod",MembNum:21},
+{SurName:"Huggett",FirstName:"Joan",MembNum:22},
+{SurName:"Hambleton",FirstName:"Roger",MembNum:23},
+{SurName:"Hambleton",FirstName:"Barbara",MembNum:24},
+{SurName:"Beckett",FirstName:"Chris",MembNum:25},
+{SurName:"Beckett",FirstName:"Dee",MembNum:26},
+{SurName:"Hagley",FirstName:"Catharina",MembNum:27},
+{SurName:"Mudie",FirstName:"Corrine",MembNum:28},
+{SurName:"Finerty",FirstName:"John",MembNum:29},
+{SurName:"Knott",FirstName:"Cara",MembNum:30},
+{SurName:"Knott",FirstName:"Clement",MembNum:31},
+{SurName:"McNamara",FirstName:"Eileen",MembNum:32},
+{SurName:"Sanchez",FirstName:"Elena",MembNum:33},
+{SurName:"Gross",FirstName:"Elizabeth",MembNum:34},
+{SurName:"Gross",FirstName:"Jurgen",MembNum:35},
+{SurName:"Gearon",FirstName:"Colin",MembNum:36},
+{SurName:"Cavanagh",FirstName:"Shirley",MembNum:37},
+{SurName:"Ableson",FirstName:"Jane",MembNum:38},
+{SurName:"Houlihan",FirstName:"Marilyn",MembNum:39},
+{SurName:"Sjokvist",FirstName:"Yvonne",MembNum:40},
+{SurName:"Lacey",FirstName:"Lynn",MembNum:41},
+{SurName:"Gearon",FirstName:"Susan",MembNum:42},
+{SurName:"Coombes",FirstName:"Maureen",MembNum:43},
+{SurName:"Whatmore",FirstName:"Carmel",MembNum:44},
+{SurName:"Purcell",FirstName:"Vincent",MembNum:45},
+{SurName:"Taylor",FirstName:"Laurie",MembNum:46},
+{SurName:"Taylor",FirstName:"Josephine",MembNum:47},
+{SurName:"Eklund",FirstName:"Anette",MembNum:48},
+{SurName:"Graty",FirstName:"Tom",MembNum:49},
+{SurName:"Da Costa",FirstName:"Michael",MembNum:50},
+{SurName:"Scott",FirstName:"Bill",MembNum:51},
+{SurName:"Scott",FirstName:"Anne",MembNum:52},
+{SurName:"Moeller",FirstName:"Angret",MembNum:53},
+{SurName:"O'Farrell",FirstName:"Betty",MembNum:54},
+{SurName:"O'Farrell",FirstName:"Brian",MembNum:55},
+{SurName:"Aston",FirstName:"Ginny",MembNum:56},
+{SurName:"Kelly",FirstName:"James",MembNum:57},
+{SurName:"Walters",FirstName:"Meta",MembNum:58},
+{SurName:"Torres",FirstName:"Carmen",MembNum:59},
+{SurName:"Cardenal",FirstName:"Julio",MembNum:60}];
+//alert(memberList[0].SurName);
 var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";
-var membName  = "LAURIE YATES";
-
+//var membName  = "LAURIE YATES";
+memberList = JSON.parse($(".grid-pane").text());
 var doc = new jsPDF("portrait", "mm","a4",false);
 var cardPage=0, carddNum=0,txtLen=0;
 // We'll make our own renderer to skip this editor
@@ -98,7 +98,7 @@ var horizonMove=cardSize.wd+cardGaps.x,vertMove= cardSize.ht+cardGaps.y;//
 
 var nextCard=new Object();
 //doc.addImage(imgData, 'JPEG', nextCard.x+(cardSize.wd/2)-8, nextCard.y+0.5, 16, 10);
-for (cardPage=1;cardPage<6;cardPage++) {
+for (cardPage=1;cardPage<=(memberList.length/12);cardPage++) {
 
 nextCard.x=firstCard.x,nextCard.y =firstCard.y-vertMove;
 makeLines(doc,cardSize,firstCard,cardGaps);
@@ -136,7 +136,7 @@ centreText(doc,FY,nextCard,cardSize,28,'times', 8,'normal') ;
 
 
 var memInd=((cardPage-1)*12)+cardNum;
-membName= memberList[memInd].forename+" "+memberList[memInd].surname;
+membName= memberList[memInd].FirstName+" "+memberList[memInd].SurName;
 var membFontSize=[13,12,11,10];
 var z=0;
 for (;membFontSize[z];z++)
@@ -155,7 +155,7 @@ doc.setTextColor(153, 51, 102);
 doc.setFontSize(13);
 doc.setFont("times","bold");
 
-var memberNum=memberList[memInd].memNum;
+var memberNum=memberList[memInd].MembNum;
 doc.text(("00"+memberNum.toString()).substr(-3,3),nextCard.x+(cardSize.wd*0.87),(nextCard.y)+36);
 }
 

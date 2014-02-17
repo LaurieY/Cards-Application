@@ -73,9 +73,10 @@ function process_wb(wb) {
 		var activeSheet;
 			var jsonOutput;
 			activeSheet = getLargestSheetFromObject(jsonOut);	//get shhet name for the largest sheet, assumed to be the important one	
-			var newOutput1=rejigColumns(jsonOut[activeSheet]);  //work out which columns are which & move to ColA=number then firstname surname
-			var newOutput2 = sortOutput1(newOutput1);
-			var newOutput3= insertBlankMembers(newOutput2);
+			var newOutput1=rejigColumns(jsonOut[activeSheet]);  //work out which columns are which & move to ColA=number then SurName SurName
+			sortOutput1(newOutput1);
+			insertBlankMembers(newOutput1);
+			padToFullPages(newOutput1,12); //pad pages to multiple of 12
 			output = JSON.stringify(newOutput1, 2, 2);
 			//output = JSON.stringify(jsonOut[activeSheet], 2, 2);
 			break;	
@@ -195,7 +196,7 @@ var activeSheet=sheetsKeys[bigSheeti];
 return activeSheet;
 }
 
-function rejigColumns(sheet){ /* identify columns for membership number, firstname and surname
+function rejigColumns(sheet){ /* identify columns for membership number, SurName and SurName
 ****************  Use Allan Edwards ==#1 and Brian Thomas ==#2 as key indicators
   ****            search the sheet looking for any array entry containg Allan and Edwards in any columns 
   ****   		Then rename columns ****/
@@ -206,7 +207,7 @@ var columnMap = {};
 
  for(var i = 0; i < sheet.length; i++) {
 if ((rowContains(sheet[i],"edwards") ) && (rowContains(sheet[i],"allan"))) {
-theRow = sheet[i];  // I have found Allan Edwards row, use this to define columns doe membership number, firstname and Surname
+theRow = sheet[i];  // I have found Allan Edwards row, use this to define columns doe membership number, SurName and SurName
 	$.each(theRow, function(key,val){ // perform mapping looking at Allan's row
 	switch  (val)
 		{
@@ -229,8 +230,8 @@ break;  // Found the mapping of the columns from c1, c2 etc to membNum etc
 for(var i = 0; i < sheet.length; i++) {
 newSheet[i]={};
 newSheet[i]["MembNum"] = sheet[i][columnMap["MembNum"]];
-newSheet[i]["FirstName"] = sheet[i][columnMap["FirstName"]];
 newSheet[i]["SurName"] = sheet[i][columnMap["SurName"]];
+newSheet[i]["FirstName"] = sheet[i][columnMap["FirstName"]];
 }
 
 return newSheet;  //Return the re-sorted sheet containing only 3 columns with the correct column names
@@ -277,5 +278,15 @@ if (gapSize>1) { //there is a gap, insert a number of blank rows
 		}
 		prevNum= newOut[i].MembNum;
 	}
+	return newOut;
+}
 
+function padToFullPages(newOut,cardsPerPage) { // pad out to full pages
+var cardsLastPage = newOut.length%cardsPerPage;
+var blankCards = cardsPerPage-cardsLastPage;
+var firstBlank= newOut.length;
+	for (var i=0; i< blankCards;i++) {
+	newOut.splice(i+firstBlank,0,{"MembNum":firstBlank+1+i,"FirstName":"","SurName":""});
+	}
+	return newOut;
 }
