@@ -12,13 +12,13 @@ function xlsworker(data, cb) {
 }
 
 function get_radio_value( radioName ) {
-/*	var radios = document.getElementsByName( radioName );
+	var radios = document.getElementsByName( radioName );
 	for( var i = 0; i < radios.length; i++ ) {
 		if( radios[i].checked ) {
 			return radios[i].value;
 		}
-	}*/
-	return "json";
+}	
+//	return "json";
 }
 
 function to_json(workbook) {
@@ -68,8 +68,8 @@ function b64it() {
 
 function process_wb(wb) {
 	var output = "";
-	switch(get_radio_value("format")) {
-		case "json":
+	/*switch(get_radio_value("format")) {
+		case "json": */  // Forced to json
 		jsonOut=to_json(wb);//get JSON object for the whole xls file, multiple sheets
 		var activeSheet;
 			var jsonOutput;
@@ -80,13 +80,13 @@ function process_wb(wb) {
 			padToFullPages(newOutput1,12); //pad pages to multiple of 12
 			output = JSON.stringify(newOutput1, 2, 2);
 			//output = JSON.stringify(jsonOut[activeSheet], 2, 2);
-			break;	
+	/*		break;	
 		case "form":
 			output = to_formulae(wb);
 			break; 
 		default:
 			output = to_csv(wb);
-	}
+	} */
 	if($(".grid-pane").text === undefined) out.textContent = output;
 	//else out.innerText = "fred";//output;
 	else $(".grid-pane").text(output);
@@ -293,4 +293,13 @@ var firstBlank= newOut.length;
 newOut.splice(i+firstBlank,0,{"MembNum":"   ","FirstName":" ","SurName":" "});
 	}
 	return newOut;
+}
+function useOnlyUnused(newOut) {
+	for(var i = 0; i < newOut.length; i++) {
+		if (newOut[i].SurName.length>0) {
+		newOut.splice(i,1); 
+		i--; // if there are multiple blanks lines go back one & try again
+		}
+	}
+return newOut;
 }

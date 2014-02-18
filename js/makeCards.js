@@ -81,7 +81,16 @@ var tempList = JSON.stringify(theList, 2, 2);
 $(".grid-pane").html(tempList);
 }
 //else {memberList = JSON.parse($(".grid-pane").text());
-else {memberList = JSON.parse($(".grid-pane").text());
+else {
+	switch(get_radio_value("selection")) {
+		case "allMembers":
+		memberList = JSON.parse($(".grid-pane").text());
+		break; 
+		case "unused":
+		memberList = JSON.parse($(".grid-pane").text());
+		useOnlyUnused(memberList);
+		break;}
+
 }
 
 
