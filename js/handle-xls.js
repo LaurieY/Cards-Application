@@ -1,4 +1,4 @@
-
+ 
 function xlsworker(data, cb) {
 	var worker = new Worker("js/xlsworker.js");
 	worker.onmessage = function(e) {
@@ -67,7 +67,8 @@ function b64it() {
 }
 
 function process_wb(wb) {
-	var output = "";
+	var output = "",
+	jsonOut;
 	/*switch(get_radio_value("format")) {
 		case "json": */  // Forced to json
 		jsonOut=to_json(wb);//get JSON object for the whole xls file, multiple sheets

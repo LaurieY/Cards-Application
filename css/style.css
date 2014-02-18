@@ -51,39 +51,27 @@ table {
 	vertical-align: top;
 }
 /*  END of RESET CSS-------------------------------------------------------*/
-table {
-border-collapse: collapse;
-}
-td th {
-display: table-cell;
-}
-.topleft { position:relative; top:1px;left:100px;width:255px;height:130px;
-display: block;
-    margin-left: 25%;
-    margin-right: auto }
-table { position:relative; top:20px;left:0px;right:0px;width:255px;height:130px;margin-bottom:20px;margin-top:20px;margin-left:20px;margin-right:20px;
-border:1.75pt solid black;
-table-layout: fixed;
-   text-align:center
-/*border-collapse:collapse;*/
-/*display:inline*/;vertical-align:top;background:white}
+
+
+
+
 #navbox  ,.navbox{ 
 	position: fixed;
 	top: 0;
 	right: 80%; 
 	bottom: 0;
 	left: 0%;
-	background: #ee3e64;
+	background: #D8D9C9;
 }
 .preview-pane {
 	border: 3px solid #ccc;
-		width: 50%; 
+		width: 70%; 
 	height:100%; 
 	/*float: left; */
 	clear: left; 
 	/*position: relative;*/
 	position:fixed;
-	left:50%;
+	left:30%;
 	right:0%;
 	font-family: "source-code-pro";
 	font-size: 14px;
@@ -103,55 +91,7 @@ table-layout: fixed;
 	display:none;
 }
 
-#cardbox { 
-	position: absolute;
-	top: 0px;
-	left: 20%; 
-	bottom: 0;
-	right:40%;
-	margin:0;
-	background: #b7d84b;
-}
-IMG.displayed {
-    display: block;
-    margin-left: auto;
-    margin-right: auto }
-.MNI { font-family:"Copperplate Gothic Bold";
-color:#993366;font-size:12.0pt;
-/*display: block;*/
-   text-align:center;
-      font-weight: bold;
-}
-.FY {
-  /* display:block ;*/
-   font-size:8.0pt;
 
-   }
-   .MEMB{
-  /* display:block ;*/
-   font-size: 10pt;
-   font-family:"Times New Roman","serif";
-   font-weight: bold;
-margin:0px;
-   }
-    .MEMNUM{
-  /* display:block ;*/
-   font-size: 12pt;
-   font-family:"Times New Roman","serif";
-   font-weight: bold;
-   color:#993366;
-margin:0px;
-   }  
-   
-tbody.cardz { 
-/*display: block;*/
-
-/*border:4.75pt solid black;*/
-table-layout: fixed;
-   text-align:center}
-   
-   tr {table-layout:fixed;}
-.page-break	{ display: none; }
 
 
 

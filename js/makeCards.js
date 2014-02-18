@@ -1,9 +1,10 @@
 
 /********************************createCards  *****/
 
-function createCards(option,theList) {
+function createCards(option, theList) {
 
-var memberList;/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
+var memberList;
+/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
 {SurName:"Edwards",FirstName:"Allan",MembNum:1},
 {SurName:"Thomas",FirstName:"Brian",MembNum:2},
 {SurName:"",FirstName:"",MembNum:3},
@@ -70,7 +71,7 @@ var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";
 /***************    Produce a page of blank cards as option ***/
 if (option==="blanks") {   
-blankMember={SurName:"",FirstName:"",MembNum:"   "}; // enough spaces in number to lose the leading '00'
+var blankMember={SurName:"",FirstName:"",MembNum:"   "}; // enough spaces in number to lose the leading '00'
   theList = [];
   for (var i = 0; i < 12; i++) {
     theList.push(blankMember);
@@ -130,6 +131,7 @@ nextCard.x=firstCard.x,nextCard.y =firstCard.y-vertMove;
 makeLines(doc,cardSize,firstCard,cardGaps);
 //doc.rect(nextCard.x,nextCard.y,cardSize.ht,cardSize.wd);
 if (cardPage!=1) doc.addPage();
+var cardNum;
 for (cardNum=0;cardNum<12;cardNum++) {
 if (cardNum%2 !=1)
 {// left side so move down
@@ -160,7 +162,7 @@ centreText(doc,MEMB,nextCard,cardSize,23,'times', 8,'bold') ;
 //doc.text(FY,(nextCard.x+0.5+(cardSize.wd/2)-(txtLen/2)),(nextCard.y)+28) ;	
 centreText(doc,FY,nextCard,cardSize,28,'times', 8,'normal') ;
 
-
+var membName;
 var memInd=((cardPage-1)*12)+cardNum;
 membName= memberList[memInd].FirstName+" "+memberList[memInd].SurName;
 var membFontSize=[13,12,11,10];
@@ -206,7 +208,7 @@ var rightLine =[205, firstcard.y-(cardgaps.y/2),190, firstcard.y-(cardgaps.y/2)]
 
 var topLine =[ firstcard.x-(cardgaps.x/2) ,5  , firstcard.x-(cardgaps.x/2) ,15 ];
 var bottomLine =[ firstcard.x-(cardgaps.x/2) ,292  , firstcard.x-(cardgaps.x/2) ,280 ];
-	for (card=1;card<4;card++)  {
+	var card;for (card=1;card<4;card++)  {
 		doc.line(topLine[0],topLine[1],topLine[2],topLine[3]);
 		doc.line(bottomLine[0],bottomLine[1],bottomLine[2],bottomLine[3]);
 		topLine[0]+= cardsize.wd+cardgaps.x;
