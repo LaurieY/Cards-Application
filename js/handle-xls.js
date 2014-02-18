@@ -256,6 +256,7 @@ function sortOutput1(newOut) {
 for(var i = 0; i < newOut.length; i++) {
 	if (newOut[i]["MembNum"]===undefined) {
 		newOut.splice(i,1); 
+		i--; // if there are multiple blanks lines go back one & try again
 		}
 	}
 newOut.sort(function (a, b) {
