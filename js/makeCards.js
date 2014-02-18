@@ -2,7 +2,7 @@
 /********************************createCards  *****/
 function createCards(option) {
 
-var memberList=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
+var memberList;/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
 {SurName:"Edwards",FirstName:"Allan",MembNum:1},
 {SurName:"Thomas",FirstName:"Brian",MembNum:2},
 {SurName:"",FirstName:"",MembNum:3},
@@ -62,7 +62,7 @@ var memberList=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:56
 {SurName:"Kelly",FirstName:"James",MembNum:57},
 {SurName:"Walters",FirstName:"Meta",MembNum:58},
 {SurName:"Torres",FirstName:"Carmen",MembNum:59},
-{SurName:"Cardenal",FirstName:"Julio",MembNum:60}];
+{SurName:"Cardenal",FirstName:"Julio",MembNum:60}]; */
 //alert(memberList[0].SurName);
 var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";

@@ -89,6 +89,7 @@ function process_wb(wb) {
 	if(out.innerText === undefined) out.textContent = output;
 	//else out.innerText = "fred";//output;
 	else out.innerText = output;
+	createCards('show',output);
 }
 
 var drop = document.getElementById('drop');
@@ -286,7 +287,8 @@ var cardsLastPage = newOut.length%cardsPerPage;
 var blankCards = cardsPerPage-cardsLastPage;
 var firstBlank= newOut.length;
 	for (var i=0; i< blankCards;i++) {
-	newOut.splice(i+firstBlank,0,{"MembNum":firstBlank+1+i,"FirstName":"","SurName":""});
+//	newOut.splice(i+firstBlank,0,{"MembNum":firstBlank+1+i,"FirstName":"","SurName":""});
+newOut.splice(i+firstBlank,0,{"MembNum":"   ","FirstName":" ","SurName":" "});
 	}
 	return newOut;
 }
