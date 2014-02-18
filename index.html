@@ -41,8 +41,8 @@ $(document).ready(function() {
 
 $('.preview-pane').attr('src','frame.html');
 //$('.grid-pane').attr('src','grid.html');
- $("button[value='makeCards']").click(function() { 
-  createCards("show"); 
+ $("button[value='makeBlanks']").click(function() { 
+  createCards("blanks"); 
  }); 
   $("button[value='printCards']").click(function() { 
 
@@ -64,18 +64,22 @@ if(drop.addEventListener) {
  });
 </script>
  <div id="navbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;text-align:left;'>
-<span id="navtext" ><p>This is in Navbox </p></span>
-<button type="button" value="makeCards">Make Cards pdf</button></br>
+<span id="navtext" ><p></p></span></br>
 <button type="button" value="printCards">Save Cards pdf</button>
+<br> </br>
+<button type="button" value="makeBlanks">A Page of Blank Cards</button>
 
 
 
 <br>
-<b>JS-XLS Live Demo</b><br />
-<input type="radio" name="format" value="csv" > CSV<br>
-<input type="radio" name="format" value="json" checked> JSON<br>
-<input type="radio" name="format" value="form"> FORMULAE<br>
+<br />
 
+
+
+<br> </br>
+<input type="radio" name="format" value="allMembers" checked>Use All Membership<br>
+<input type="radio" name="format" value="unused" >Only Unused Cards<br>
+<input type="radio" name="format" value="form"> Three<br>
 <div id="drop">Drop an XLS file here to see sheet data.</div>
 <!--
 <textarea id="b64data">... or paste a base64-encoding here</textarea>

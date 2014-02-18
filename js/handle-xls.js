@@ -12,12 +12,13 @@ function xlsworker(data, cb) {
 }
 
 function get_radio_value( radioName ) {
-	var radios = document.getElementsByName( radioName );
+/*	var radios = document.getElementsByName( radioName );
 	for( var i = 0; i < radios.length; i++ ) {
 		if( radios[i].checked ) {
 			return radios[i].value;
 		}
-	}
+	}*/
+	return "json";
 }
 
 function to_json(workbook) {
@@ -86,9 +87,9 @@ function process_wb(wb) {
 		default:
 			output = to_csv(wb);
 	}
-	if(out.innerText === undefined) out.textContent = output;
+	if($(".grid-pane").text === undefined) out.textContent = output;
 	//else out.innerText = "fred";//output;
-	else out.innerText = output;
+	else $(".grid-pane").text(output);
 	createCards('show',output);
 }
 

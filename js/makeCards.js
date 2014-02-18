@@ -1,6 +1,7 @@
 
 /********************************createCards  *****/
-function createCards(option) {
+
+function createCards(option,theList) {
 
 var memberList;/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
 {SurName:"Edwards",FirstName:"Allan",MembNum:1},
@@ -64,10 +65,26 @@ var memberList;/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum
 {SurName:"Torres",FirstName:"Carmen",MembNum:59},
 {SurName:"Cardenal",FirstName:"Julio",MembNum:60}]; */
 //alert(memberList[0].SurName);
+
 var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";
-//var membName  = "LAURIE YATES";
-memberList = JSON.parse($(".grid-pane").text());
+/***************    Produce a page of blank cards as option ***/
+if (option==="blanks") {   
+blankMember={SurName:"",FirstName:"",MembNum:"   "}; // enough spaces in number to lose the leading '00'
+  theList = [];
+  for (var i = 0; i < 12; i++) {
+    theList.push(blankMember);
+  };
+memberList = theList;
+//out.innerText = JSON.stringify(theList, 2, 2);
+var tempList = JSON.stringify(theList, 2, 2);
+$(".grid-pane").html(tempList);
+}
+//else {memberList = JSON.parse($(".grid-pane").text());
+else {memberList = JSON.parse($(".grid-pane").text());
+}
+
+
 var doc = new jsPDF("portrait", "mm","a4",false);
 var cardPage=0, carddNum=0,txtLen=0;
 // We'll make our own renderer to skip this editor
@@ -162,7 +179,7 @@ doc.text(("00"+memberNum.toString()).substr(-3,3),nextCard.x+(cardSize.wd*0.87),
 
 }
 
-if (option==="show") {
+if ((option==="show")||(option==="blanks")) {
 var string = doc.output('datauristring');
 //doc.output('datauri');
 $('.preview-pane').attr('src', string); }
