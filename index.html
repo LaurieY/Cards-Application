@@ -38,7 +38,9 @@
 <body lang=EN-GB>
 <script> 
 $(document).ready(function() { 
-
+		var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('fileDisplayArea');
+		var allMembers = document.getElementById('allMembers');
 $('.preview-pane').attr('src','frame.html');
 //$('.grid-pane').attr('src','grid.html');
  $("button[value='makeBlanks']").click(function() { 
@@ -61,10 +63,17 @@ if(drop.addEventListener) {
 	drop.addEventListener('dragover', handleDragover, false);
 	drop.addEventListener('drop', handleDrop, false);
 }
+ 
+
+
+  fileInput.addEventListener('change', handleFileSelect, false);
+  allMembers.addEventListener('change',handleallMembers,false);
+  
  });
 </script>
  <div id="navbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;text-align:left;'>
-<span id="navtext" ><p></p></span></br>
+<span id="navtext" ><p></p></span>
+</br>
 <button type="button" value="printCards">Save Cards pdf</button>
 <br> </br>
 <button type="button" value="makeBlanks">A Page of Blank Cards</button>
@@ -77,9 +86,10 @@ if(drop.addEventListener) {
 
 
 <br> </br>
-<input type="radio" name="selection" value="allMembers" checked>Use All Membership<br>
-<input type="radio" name="selection" value="unused" >Only Unused Cards<br>
-
+<input type="radio" name="selection" id="allMembers" value="allMembers" checked>Use All Membership<br>
+<input type="radio" name="selection" value="unused" >Only Unused Cards<br><br>
+<input type="file" id="fileInput" name="fileInput" multiple />
+<output id="list"></output>
 <div id="drop">Drop an XLS file here to see sheet data.</div>
 <!--
 <textarea id="b64data">... or paste a base64-encoding here</textarea>

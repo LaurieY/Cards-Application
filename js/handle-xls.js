@@ -115,11 +115,54 @@ function handleDrop(e) {
 				process_wb(wb);
 			}
 		};
-		reader.readAsBinaryString(f);
+
 		//reader.readAsArrayBuffer(f);
 	}
 }
+function fileOnLoad(dta) {
+	
+				if(typeof Worker !== 'undefined') {
+				xlsworker(dta, process_wb);
+			} else {
+				var cfb = XLS.CFB.read(dta, {type: 'binary'});
+				//var arr = String.fromCharCode.apply(null, new Uint8Array(data));
+				//var cfb = XLS.CFB.read(btoa(arr), {type: 'base64'});
+				var wb = XLS.parse_xlscfb(cfb);
+				process_wb(wb);
+			}
+}
+   function handleFileSelect(e) {
+  // 	e.stopPropagation();
+	//e.preventDefault();
+ 
+			var file = fileInput.files[0];
+			var textType = /text.*/;
 
+	
+				var reader = new FileReader();
+				reader.onload = function(e) {
+			var data = e.target.result;
+			fileOnLoad(data);
+	/*		if(typeof Worker !== 'undefined') {
+				xlsworker(data, process_wb);
+			} else {
+				var cfb = XLS.CFB.read(data, {type: 'binary'});
+				//var arr = String.fromCharCode.apply(null, new Uint8Array(data));
+				//var cfb = XLS.CFB.read(btoa(arr), {type: 'base64'});
+				var wb = XLS.parse_xlscfb(cfb);
+				process_wb(wb);
+			}*/
+		};
+		reader.readAsBinaryString(file);
+
+				
+
+}
+function handleallMembers(e) {
+var clearDisplay =1;
+var file=fileInput.files[0];
+
+}
 
 function sheet_to_row_object_array_add_headings(sheet, headings){ //column headings are an array of strings to be used as the headings i.e. Row 0
 	var val, rowObject, range, columnHeaders, emptyRow, C;
