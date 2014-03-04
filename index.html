@@ -41,6 +41,8 @@ $(document).ready(function() {
 		var fileInput = document.getElementById('fileInput');
 		var fileDisplayArea = document.getElementById('fileDisplayArea');
 		var allMembers = document.getElementById('allMembers');
+		var noMembers = document.getElementById('noMembers');
+		var data =0x0;
 $('.preview-pane').attr('src','frame.html');
 //$('.grid-pane').attr('src','grid.html');
  $("button[value='makeBlanks']").click(function() { 
@@ -68,6 +70,7 @@ if(drop.addEventListener) {
 
   fileInput.addEventListener('change', handleFileSelect, false);
   allMembers.addEventListener('change',handleallMembers,false);
+  noMembers.addEventListener('change',handleallMembers,false);
   
  });
 </script>
@@ -87,7 +90,7 @@ if(drop.addEventListener) {
 
 <br> </br>
 <input type="radio" name="selection" id="allMembers" value="allMembers" checked>Use All Membership<br>
-<input type="radio" name="selection" value="unused" >Only Unused Cards<br><br>
+<input type="radio" name="selection" id="noMembers" value="unused" >Only Unused Cards<br><br>
 <input type="file" id="fileInput" name="fileInput" multiple />
 <output id="list"></output>
 <div id="drop">Drop an XLS file here to see sheet data.</div>

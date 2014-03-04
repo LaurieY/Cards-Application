@@ -104,20 +104,13 @@ function handleDrop(e) {
 		var reader = new FileReader();
 		var name = f.name;
 		reader.onload = function(e) {
-			var data = e.target.result;
-			if(typeof Worker !== 'undefined') {
-				xlsworker(data, process_wb);
-			} else {
-				var cfb = XLS.CFB.read(data, {type: 'binary'});
-				//var arr = String.fromCharCode.apply(null, new Uint8Array(data));
-				//var cfb = XLS.CFB.read(btoa(arr), {type: 'base64'});
-				var wb = XLS.parse_xlscfb(cfb);
-				process_wb(wb);
-			}
+			 data = e.target.result;
+			fileOnLoad(data);
 		};
-
+			reader.readAsBinaryString(f);
 		//reader.readAsArrayBuffer(f);
 	}
+
 }
 function fileOnLoad(dta) {
 	
@@ -141,7 +134,7 @@ function fileOnLoad(dta) {
 	
 				var reader = new FileReader();
 				reader.onload = function(e) {
-			var data = e.target.result;
+			 data = e.target.result;
 			fileOnLoad(data);
 	/*		if(typeof Worker !== 'undefined') {
 				xlsworker(data, process_wb);
@@ -160,7 +153,12 @@ function fileOnLoad(dta) {
 }
 function handleallMembers(e) {
 var clearDisplay =1;
+//if (fileInput.files.length >0) {
+if (typeof data!='undefined'){
 var file=fileInput.files[0];
+
+			fileOnLoad(data);
+}
 
 }
 
