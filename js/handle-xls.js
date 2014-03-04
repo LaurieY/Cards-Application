@@ -81,13 +81,7 @@ function process_wb(wb) {
 			padToFullPages(newOutput1,12); //pad pages to multiple of 12
 			output = JSON.stringify(newOutput1, 2, 2);
 			//output = JSON.stringify(jsonOut[activeSheet], 2, 2);
-	/*		break;	
-		case "form":
-			output = to_formulae(wb);
-			break; 
-		default:
-			output = to_csv(wb);
-	} */
+
 	if($(".grid-pane").text === undefined) out.textContent = output;
 	//else out.innerText = "fred";//output;
 	else $(".grid-pane").text(output);
@@ -136,15 +130,7 @@ function fileOnLoad(dta) {
 				reader.onload = function(e) {
 			 data = e.target.result;
 			fileOnLoad(data);
-	/*		if(typeof Worker !== 'undefined') {
-				xlsworker(data, process_wb);
-			} else {
-				var cfb = XLS.CFB.read(data, {type: 'binary'});
-				//var arr = String.fromCharCode.apply(null, new Uint8Array(data));
-				//var cfb = XLS.CFB.read(btoa(arr), {type: 'base64'});
-				var wb = XLS.parse_xlscfb(cfb);
-				process_wb(wb);
-			}*/
+
 		};
 		reader.readAsBinaryString(file);
 
@@ -160,6 +146,12 @@ var file=fileInput.files[0];
 			fileOnLoad(data);
 }
 
+}
+function setFY() {
+var x = document.getElementById("fyText").value;
+ localStorage.storedFY = x;
+var toFY = parseInt(x) +1;
+document.getElementById("FY").innerHTML="(October "+x+ "- September "+ (toFY) +")";
 }
 
 function sheet_to_row_object_array_add_headings(sheet, headings){ //column headings are an array of strings to be used as the headings i.e. Row 0

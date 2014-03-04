@@ -4,70 +4,10 @@
 function createCards(option, theList) {
 
 var memberList;
-/*=[{SurName:"Benavides Pascual",FirstName:"Maria Teresa",MembNum:564,printed:''},
-{SurName:"Edwards",FirstName:"Allan",MembNum:1},
-{SurName:"Thomas",FirstName:"Brian",MembNum:2},
-{SurName:"",FirstName:"",MembNum:3},
-{SurName:"Rowat",FirstName:"Margaret",MembNum:4},
-{SurName:"Kohler",FirstName:"Ingeborg",MembNum:5},
-{SurName:"Lawlor",FirstName:"Mauna",MembNum:6},
-{SurName:"Thomas",FirstName:"Carol",MembNum:7},
-{SurName:"Watson",FirstName:"Brian",MembNum:8},
-{SurName:"Gilhead",FirstName:"Jean ",MembNum:9},
-{SurName:"Howard",FirstName:"Paul",MembNum:10},
-{SurName:"Abbott",FirstName:"Harry",MembNum:11},
-{SurName:"Joss",FirstName:"Jean",MembNum:12},
-{SurName:"Siebrecht",FirstName:"Irmela",MembNum:13},
-{SurName:"Heinen",FirstName:"Lola",MembNum:14},
-{SurName:"Bayer",FirstName:"Jutta",MembNum:15},
-{SurName:"Houben",FirstName:"Valerie",MembNum:16},
-{SurName:"Woodhead",FirstName:"Jane",MembNum:17},
-{SurName:"Van Tuijl",FirstName:"Pieter",MembNum:18},
-{SurName:"Van Tuijl",FirstName:"Jo-Anne",MembNum:19},
-{SurName:"Ellis",FirstName:"Jenny",MembNum:20},
-{SurName:"Ellis",FirstName:"Rod",MembNum:21},
-{SurName:"Huggett",FirstName:"Joan",MembNum:22},
-{SurName:"Hambleton",FirstName:"Roger",MembNum:23},
-{SurName:"Hambleton",FirstName:"Barbara",MembNum:24},
-{SurName:"Beckett",FirstName:"Chris",MembNum:25},
-{SurName:"Beckett",FirstName:"Dee",MembNum:26},
-{SurName:"Hagley",FirstName:"Catharina",MembNum:27},
-{SurName:"Mudie",FirstName:"Corrine",MembNum:28},
-{SurName:"Finerty",FirstName:"John",MembNum:29},
-{SurName:"Knott",FirstName:"Cara",MembNum:30},
-{SurName:"Knott",FirstName:"Clement",MembNum:31},
-{SurName:"McNamara",FirstName:"Eileen",MembNum:32},
-{SurName:"Sanchez",FirstName:"Elena",MembNum:33},
-{SurName:"Gross",FirstName:"Elizabeth",MembNum:34},
-{SurName:"Gross",FirstName:"Jurgen",MembNum:35},
-{SurName:"Gearon",FirstName:"Colin",MembNum:36},
-{SurName:"Cavanagh",FirstName:"Shirley",MembNum:37},
-{SurName:"Ableson",FirstName:"Jane",MembNum:38},
-{SurName:"Houlihan",FirstName:"Marilyn",MembNum:39},
-{SurName:"Sjokvist",FirstName:"Yvonne",MembNum:40},
-{SurName:"Lacey",FirstName:"Lynn",MembNum:41},
-{SurName:"Gearon",FirstName:"Susan",MembNum:42},
-{SurName:"Coombes",FirstName:"Maureen",MembNum:43},
-{SurName:"Whatmore",FirstName:"Carmel",MembNum:44},
-{SurName:"Purcell",FirstName:"Vincent",MembNum:45},
-{SurName:"Taylor",FirstName:"Laurie",MembNum:46},
-{SurName:"Taylor",FirstName:"Josephine",MembNum:47},
-{SurName:"Eklund",FirstName:"Anette",MembNum:48},
-{SurName:"Graty",FirstName:"Tom",MembNum:49},
-{SurName:"Da Costa",FirstName:"Michael",MembNum:50},
-{SurName:"Scott",FirstName:"Bill",MembNum:51},
-{SurName:"Scott",FirstName:"Anne",MembNum:52},
-{SurName:"Moeller",FirstName:"Angret",MembNum:53},
-{SurName:"O'Farrell",FirstName:"Betty",MembNum:54},
-{SurName:"O'Farrell",FirstName:"Brian",MembNum:55},
-{SurName:"Aston",FirstName:"Ginny",MembNum:56},
-{SurName:"Kelly",FirstName:"James",MembNum:57},
-{SurName:"Walters",FirstName:"Meta",MembNum:58},
-{SurName:"Torres",FirstName:"Carmen",MembNum:59},
-{SurName:"Cardenal",FirstName:"Julio",MembNum:60}]; */
-//alert(memberList[0].SurName);
-
-var FY="(October 2013 - September 2014)";
+var fromFY =localStorage.storedFY;
+var toFY = parseInt(fromFY) +1;
+var FY ="(October "+fromFY+ "- September "+ (toFY) +")"
+//var FY="(October 2013 - September 2014)";
 var MEMB = "MEMBERSHIP CARD";
 /***************    Produce a page of blank cards as option ***/
 if (option==="blanks") {   

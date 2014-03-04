@@ -72,28 +72,54 @@ if(drop.addEventListener) {
   allMembers.addEventListener('change',handleallMembers,false);
   noMembers.addEventListener('change',handleallMembers,false);
   
+ if(typeof(Storage)!=="undefined")
+  {
+  // Code for localStorage/sessionStorage.
+ //	localStorage.removeItem("storedFY");
+  if (localStorage.getItem("storedFY") ==null) {
+   //document.getElementById("fyText").value='hhg';
+   // set FY start by default to be this FY if before July
+   var d = new Date();
+  var y = d.getFullYear();
+  var m=d.getMonth();
+  if ( m <7 ) y = (parseInt(y)-1 ).toString();
+   localStorage.storedFY = y;
+  }
+  document.getElementById("fyText").value=localStorage.getItem("storedFY");
+ setFY(); }
+else
+  {
+  // Sorry! No Web Storage support..
+  alert("No local Storage available in This Browser");
+  } 
+
  });
 </script>
  <div id="navbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;text-align:left;'>
 <span id="navtext" ><p></p></span>
-</br>
+<br/>
 <button type="button" value="printCards">Save Cards pdf</button>
-<br> </br>
+<br> <br/>
 <button type="button" value="makeBlanks">A Page of Blank Cards</button>
 
+<br><br/>
+<br> <br/>
 
-
-<br>
-<br />
-
-
-
-<br> </br>
-<input type="radio" name="selection" id="allMembers" value="allMembers" checked>Use All Membership<br>
+<input type="radio" name="selection" id="allMembers" value="allMembers" checked>Show All <br>
 <input type="radio" name="selection" id="noMembers" value="unused" >Only Unused Cards<br><br>
 <input type="file" id="fileInput" name="fileInput" multiple />
 <output id="list"></output>
 <div id="drop">Drop an XLS file here to see sheet data.</div>
+<br>
+<form>
+Financial Year Start (e.g.2013) : <input type="textbox" id="fyText" name="fyName" value=""><br>
+</form>
+
+<p>Change the start year for the Financial Year text.</p>
+
+<p id="FY"><br></p>
+
+<button id="fyClick" onclick="setFY()">Set FY text</button>
 <!--
 <textarea id="b64data">... or paste a base64-encoding here</textarea>
 <input type="button" id="dotext" value="Click here to process the base64 text" onclick="b64it();"/>
