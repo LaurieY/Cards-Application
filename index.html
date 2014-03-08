@@ -6,7 +6,7 @@
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=Generator content="Microsoft Word 14 (filtered)">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="screen">
-<link href="css/style_print.css" rel="stylesheet" type="text/css" media="print">
+<!--link href="css/style_print.css" rel="stylesheet" type="text/css" media="print" -->
 
 <script type="text/javascript" src="js/jquery-2.1.0.js"></script> 
 
@@ -18,6 +18,15 @@
 
 <script type="text/javascript" src="js/xls.js"></script>
 
+ 
+  <!--link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.10.4.custom.css" -->
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css">
+	 <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+   <!-- script type="text/javascript" src="js/jquery-ui-1.10.4.custom.js"></script-->
+  
+
+
 <style>
 #drop{
 	border:2px dashed #bbb;
@@ -26,26 +35,32 @@
 	border-radius:5px;
 	padding:25px;
 	text-align:center;
-	font:20pt bold,"Vollkorn";color:#bbb
+	font:20pt bold,"Vollkorn";color:#EB8F00
 }
 #b64data{
 	width:100%;
 }
+#fileInput { width:0; height:0; } 
 
 </style>
 
 </head>
 <body lang=EN-GB>
 <script> 
+	var data =0x0;
 $(document).ready(function() { 
 		var fileInput = document.getElementById('fileInput');
-		var fileDisplayArea = document.getElementById('fileDisplayArea');
+				//var fileInput = document.getElementById('btn-upload');
+		var fileNameText = document.getElementById('fileNameText');
 		var allMembers = document.getElementById('allMembers');
 		var noMembers = document.getElementById('noMembers');
-		var data =0x0;
+	
+		var memberList =[];
 $('.preview-pane').attr('src','frame.html');
 //$('.grid-pane').attr('src','grid.html');
  $("button[value='makeBlanks']").click(function() { 
+ data =0x0;
+ fileNameText.innerText="";
   createCards("blanks"); 
  }); 
   $("button[value='printCards']").click(function() { 
@@ -71,7 +86,15 @@ if(drop.addEventListener) {
   fileInput.addEventListener('change', handleFileSelect, false);
   allMembers.addEventListener('change',handleallMembers,false);
   noMembers.addEventListener('change',handleallMembers,false);
-  
+  $(function(){
+    $('#btn-upload').click(function(e){
+        e.preventDefault();
+        $('#fileInput').click();}
+    );
+});
+  // ******  initialize spinner from localStorage if it exists     
+ $( "#spinner" ).spinner();
+ 
  if(typeof(Storage)!=="undefined")
   {
   // Code for localStorage/sessionStorage.
@@ -85,41 +108,70 @@ if(drop.addEventListener) {
   if ( m <7 ) y = (parseInt(y)-1 ).toString();
    localStorage.storedFY = y;
   }
-  document.getElementById("fyText").value=localStorage.getItem("storedFY");
+//  document.getElementById("fyText").value=localStorage.getItem("storedFY");
+$( "#spinner" ).spinner("value",localStorage.getItem("storedFY"));
  setFY(); }
 else
   {
   // Sorry! No Web Storage support..
   alert("No local Storage available in This Browser");
   } 
+$( "button" ).button();
+//$("#fyText").button();
+$("#btn-upload").button({ text: false });
+$( "#radio" ).buttonset();
 
- });
+ $( "#spinner" ).on( "spinstop", function( event, ui ) {
+
+ setFY();
+ } );
+ 
+ $("#fyText").keyup(function(event){
+ if(event.keyCode == 13){
+        $("#fyClick").click();
+    } 
+}); 
+});
 </script>
  <div id="navbox" style='padding:4.35pt 7.95pt 4.35pt 7.95pt;text-align:left;'>
 <span id="navtext" ><p></p></span>
 <br/>
-<button type="button" value="printCards">Save Cards pdf</button>
+
 <br> <br/>
-<button type="button" value="makeBlanks">A Page of Blank Cards</button>
+<div id="radio">
+<input type="radio" name="selection" id="allMembers" value="allMembers" checked>
+  <label for="allMembers">Show All Cards</label> 
+<input type="radio" name="selection" id="noMembers" value="unused" >
+<label for="noMembers">Only Unused Cards</label><br><br>
+  </div>
+<input type="file" id="fileInput" name="fileInput"  />
+<button id='btn-upload'>Select Member File</button>
+<span id="fileNameText"></span>
+<div id="drop">OR <p>Drop a Membership XLS file here.</div>
+<br>
+<br> <button type="button" value="makeBlanks">A Page of Blank Cards</button>
 
 <br><br/>
-<br> <br/>
 
-<input type="radio" name="selection" id="allMembers" value="allMembers" checked>Show All <br>
-<input type="radio" name="selection" id="noMembers" value="unused" >Only Unused Cards<br><br>
-<input type="file" id="fileInput" name="fileInput" multiple />
-<output id="list"></output>
-<div id="drop">Drop an XLS file here to see sheet data.</div>
+
+<button type="button" value="printCards">Save Cards pdf</button>
+
 <br>
-<form>
-Financial Year Start (e.g.2013) : <input type="textbox" id="fyText" name="fyName" value=""><br>
-</form>
 
-<p>Change the start year for the Financial Year text.</p>
+<br>
+<!--form >
+Financial Year Start (e.g.2013) : <!--input type="textbox" id="fyText"  value=""><br>
+</form-->
 
-<p id="FY"><br></p>
+<p style="font-size: 1.2em";>Change the start year for the Financial Year text.</p>
+<input id="spinner">
+<br><br>
+<p id="FY">
 
-<button id="fyClick" onclick="setFY()">Set FY text</button>
+<!-- button id="fyClick" onclick="setFY()">Set FY text</button -->
+<br>
+
+
 <!--
 <textarea id="b64data">... or paste a base64-encoding here</textarea>
 <input type="button" id="dotext" value="Click here to process the base64 text" onclick="b64it();"/>
@@ -127,6 +179,7 @@ Financial Year Start (e.g.2013) : <input type="textbox" id="fyText" name="fyName
 
 <br />
 </div>
+
 <div class="page-icon grid-pane" frameborder="0" >
 <br>
 <pre id="out"></pre>

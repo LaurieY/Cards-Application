@@ -3,7 +3,7 @@
 
 function createCards(option, theList) {
 
-var memberList;
+//var memberList;
 var fromFY =localStorage.storedFY;
 var toFY = parseInt(fromFY) +1;
 var FY ="(October "+fromFY+ "- September "+ (toFY) +")"

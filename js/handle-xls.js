@@ -92,18 +92,20 @@ var drop = document.getElementById('drop');
 function handleDrop(e) {
 	e.stopPropagation();
 	e.preventDefault();
-	var files = e.dataTransfer.files;
-	var i,f;
-	for (i = 0, f = files[i]; i != files.length; ++i) {
+	var file = e.dataTransfer.files[0];
+
+//	for (i = 0, f = files[i]; i != files.length; ++i) {
 		var reader = new FileReader();
-		var name = f.name;
+		var name = file.name;
+		$('#fileNameText').text(file.name);
+		
 		reader.onload = function(e) {
 			 data = e.target.result;
 			fileOnLoad(data);
 		};
-			reader.readAsBinaryString(f);
+			reader.readAsBinaryString(file);
 		//reader.readAsArrayBuffer(f);
-	}
+	
 
 }
 function fileOnLoad(dta) {
@@ -123,7 +125,11 @@ function fileOnLoad(dta) {
 	//e.preventDefault();
  
 			var file = fileInput.files[0];
-			var textType = /text.*/;
+			
+		$('#fileNameText').text(file.name);
+			//var tempval=fileInput.value;
+			//fileInput.value = "C:\fakepath\Freddy 2014 Cards List.xls";
+			//var textType = /text.*/;
 
 	
 				var reader = new FileReader();
@@ -148,12 +154,23 @@ var file=fileInput.files[0];
 
 }
 function setFY() {
-var x = document.getElementById("fyText").value;
+//var x = document.getElementById("fyText").value;
+var x =$( "#spinner" ).spinner( "value" );
  localStorage.storedFY = x;
 var toFY = parseInt(x) +1;
 document.getElementById("FY").innerHTML="(October "+x+ "- September "+ (toFY) +")";
+// ** if both memberList and data are undefined there is nothing to update
+// if only data is undefined its a page of blanks to update
+// if data is defined then need to perform an update on the cards
+	//if (typeof data!='undefined'){
+	if (data!=0x0){
+	fileOnLoad(data);
+	} else {
+		if(typeof memberList!='undefined'){ // data is undefined so haven't read a file, only blanks to display
+		 createCards("blanks"); 	
+		}
+	}
 }
-
 function sheet_to_row_object_array_add_headings(sheet, headings){ //column headings are an array of strings to be used as the headings i.e. Row 0
 	var val, rowObject, range, columnHeaders, emptyRow, C;
 	var outSheet = [];
