@@ -110,9 +110,9 @@ function handleDrop(e) {
 }
 function fileOnLoad(dta) {
 	
-				if(typeof Worker !== 'undefined') {
+	/*			if(typeof Worker !== 'undefined') {
 				xlsworker(dta, process_wb);
-			} else {
+			} else */ {
 				var cfb = XLS.CFB.read(dta, {type: 'binary'});
 				//var arr = String.fromCharCode.apply(null, new Uint8Array(data));
 				//var cfb = XLS.CFB.read(btoa(arr), {type: 'base64'});
